@@ -9,7 +9,8 @@ from opentelemetry.sdk.trace.export import (
     BatchSpanProcessor,
 )
 
-otlp_exporter = OTLPSpanExporter(endpoint="http://localhost:4317", insecure=True)
+otlp_exporter = OTLPSpanExporter(endpoint="http://jaeger:4317", insecure=True)
+
 span_processor = BatchSpanProcessor(otlp_exporter)
 
 

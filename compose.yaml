@@ -1,0 +1,30 @@
+# compose file for observability tools
+# This file ins't supposed to be run alone, instead it extends[1]
+# our compose.yaml file
+#
+# 1 - https://docs.docker.com/compose/multiple-compose-files/extends/
+---
+services:
+  python:
+    build:
+      context: .
+      dockerfile: Dockerfile.python
+    ports:
+      - "8081:8081"
+    environment:
+      - "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=jaeger:4317"
+  jaeger:
+    attach: false  # We don't want logs
+    image: "jaegertracing/all-in-one"
+    ports:
+      - "5778:5778"    # Server configs
+      - "16686:16686"  # Server frontend
+      - "4317:4317"    # Listens for OLTP gRPC
+      - "14269:14269"  # Admin port, also, used for /metrics
+  prometheus:
+    attach: false  # We don't want logs
+    image: "prom/prometheus"
+    ports:
+      - "9090:9090"
+    volumes:
+      - "./prometheus.yaml:/etc/prometheus/prometheus.yml"
