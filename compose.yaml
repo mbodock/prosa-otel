@@ -5,14 +5,19 @@
 # 1 - https://docs.docker.com/compose/multiple-compose-files/extends/
 ---
 services:
+  golang:
+    build:
+      context: .
+      dockerfile: Dockerfile.golang
+    ports:
+      - "8080:8080"
   python:
+    attach: false
     build:
       context: .
       dockerfile: Dockerfile.python
     ports:
       - "8081:8081"
-    environment:
-      - "OTEL_EXPORTER_OTLP_TRACES_ENDPOINT=jaeger:4317"
   jaeger:
     attach: false  # We don't want logs
     image: "jaegertracing/all-in-one"
