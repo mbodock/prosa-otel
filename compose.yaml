@@ -16,8 +16,6 @@ services:
     build:
       context: .
       dockerfile: Dockerfile.python
-    ports:
-      - "8081:8081"
   jaeger:
     attach: false  # We don't want logs
     image: "jaegertracing/all-in-one"
@@ -33,3 +31,7 @@ services:
       - "9090:9090"
     volumes:
       - "./prometheus.yaml:/etc/prometheus/prometheus.yml"
+  httpbin:
+    attach: false
+    image: "kennethreitz/httpbin"
+

@@ -12,5 +12,5 @@ EXPOSE 8081
 CMD opentelemetry-instrument \
     --traces_exporter console,otlp \
     --metrics_exporter console \
-    --service_name your-service-name \
+    --service_name python-service \
     uvicorn main:app --host 0.0.0.0 --port 8081 --reload
