@@ -1,0 +1,44 @@
+# Prosa OpenTelemetry
+Debugando sem olhar o código.
+
+Marcus Martins
+@mbodock
+
+## Introdução ao OpenTelemetry
+
+O OpenTelemetry fornece um conjunto unificado de APIs, bibliotecas, agentes e instrumentações para gerar e coletar dados de telemetria (logs, métricas, rastreamentos) em softwares nativos da nuvem. É um projeto de código aberto e dirigido pela comunidade, visando padronizar a coleta de telemetria entre diferentes plataformas e linguagens (GPT,Chat 2024).
+.denso, obeservar
+
+[https://opentelemetry.io/docs/what-is-opentelemetry/](https://opentelemetry.io/docs/what-is-opentelemetry/)
+
+## Tópicos Principais
+* **API**: Define as interfaces e convenções para coleta de dados de telemetria.
+* **SDK**: Implementação concreta da API, fornecendo a lógica de controle e processamento de dados.
+* **Agentes**: Softwares que são instalados junto aos aplicativos para coletar automaticamente dados de telemetria. Facilitam a instrumentação de aplicações sem a necessidade de alterações no código.
+* **Ecossistema**: Conjunto de bibliotecas, frameworks e ferramentas compatíveis que expandem as capacidades do OpenTelemetry. Inclui integrações com sistemas de monitoramento, rastreamento e observabilidade.
+. nota Itens Fora de Escopo
+- Exporters, Collectors, Semantic Conventions não serão detalhados nesta prosa.
+
+
+## O que é Telemetria?
+
+Telemetria envolve coletar e processar dados sobre a operação de softwares e sistemas. Tipicamente inclui:
+
+- **Logs**: Registros de eventos que ocorrem dentro da aplicação ou sistema.
+- **Métricas**: Medidas quantitativas de diferentes aspectos do sistema, tomadas ao longo do tempo.
+- **Tracing**: Descrições detalhadas do ciclo de vida de um requestà medida que ela passa por vários serviços em um sistema distribuído.
+.Junção openTracing e openCensus
+
+## Tracing Diagram
+.image waterfall.jpeg
+
+## Hands on!
+
+Sobre a demo, temos dois serviços:
+
+* Golang service: Devidamente instrumentado
+* Ptyhon service: Instrumentado automaticamente
+
+Apenas o serviço em Go é acessivel.
+
+O endpoint `POST /sum` falha para numeros grandes.
